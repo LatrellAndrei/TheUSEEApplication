@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         forgotPassword.setOnClickListener(this);
 
     }
-
+   // this is where the where you can click the viewgroups in logins
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-
+        //to login your email and password that was registered
     private void userLogin() {
        final String email = editTextEmail.getText().toString().trim();
        final String password = editTextPassword.getText().toString().trim();
@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             editTextPassword.requestFocus();
             return;
         }
-
+            // i set the password to only 6 letters
         if (password.length() < 6) {
             editTextPassword.setError("Min password Length should be 6 characters");
             editTextPassword.requestFocus();
@@ -101,14 +101,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    //an account is verified through email
                     if(user.isEmailVerified()) {
                         //redirect to main activity
                         startActivity(new Intent(Login.this, MainActivity.class));
                     }else {
+                        //this toast will show only when you login a fresh account you need to verify your email
                         user.sendEmailVerification();
                         Toast.makeText(Login.this, "Check your email to verify your Account", Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    //this will show when the account is not yet registered
                     Toast.makeText(Login.this, "Failed to Login! Please Check your Credentials", Toast.LENGTH_LONG).show();
                 }
             }

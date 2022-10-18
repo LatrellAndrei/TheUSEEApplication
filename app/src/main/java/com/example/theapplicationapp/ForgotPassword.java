@@ -43,6 +43,7 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
     }
+    // this is the code when you try to reset your password when you forgot
     private void resetPassword(){
         String email = emailEditText.getText().toString().trim();
 
